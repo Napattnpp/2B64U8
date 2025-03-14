@@ -11,6 +11,10 @@ class BB64U8:
         self.decode_img = ""
 
     def encode(self, img_path, option=1):
+        # Validate the option
+        if option not in (0, 1):
+            raise ValueError("Invalid option! Use 0 for all conversions or 1 for binary only.")
+
         with open(img_path, "rb") as img_file:
             # Read the image as binary data
             self.binary_img = img_file.read()
