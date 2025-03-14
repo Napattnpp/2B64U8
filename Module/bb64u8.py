@@ -10,15 +10,24 @@ class BB64U8:
 
         self.decode_img = ""
 
-    def encode(self, img_path):
+    def encode(self, img_path, option=1):
         with open(img_path, "rb") as img_file:
-            # Read the binary data of the image
+            # Read the image as binary data
             self.binary_img = img_file.read()
-            # Encode the image data to Base64
-            self.base64_img = base64.b64encode(self.binary_img)
 
-            # Convert to string format for transmission
-            self.utf8_img = self.base64_img.decode("utf-8")
+            # Convert only binary
+            if option == 0:
+                self.base64_img = None
+                self.utf8_img = None
+
+            # Convert binary, Base64, and UTF-8 (select by default)
+            elif option == 1:
+                # Encode the binary image data to Base64 (byte)
+                # * NOT FOR PRINTING * #
+                self.base64_img = base64.b64encode(self.binary_img)
+                # Convert Base64 (byte) to string format
+                # * FOR PRINTING * #
+                self.utf8_img = self.base64_img.decode("utf-8")
 
     def saveTextImg(self, file_path, textImage, EOF=None):
         with open(file_path, "wb") as file:
