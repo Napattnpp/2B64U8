@@ -13,7 +13,7 @@ class BB64U8:
     def encode(self, img_path, option=1):
         # Validate the option
         if option not in (0, 1):
-            raise ValueError("Invalid option! Use 0 for all conversions or 1 for binary only.")
+            raise ValueError("Invalid option! Use 0 for binary conversion only or 1 for full conversion.")
 
         with open(img_path, "rb") as img_file:
             # Read the image as binary data
